@@ -278,8 +278,16 @@ def create_deviation_bar_chart(deviations, title):
     st.plotly_chart(fig, use_container_width=True)
 
 
-def download_filtered_data(df_filtered):
-    """Offer download buttons for CSV and Excel."""
+def download_filtered_data(df_filtered, key_prefix=""):
+    """Offer download buttons for CSV and Excel.
+
+    Parameters
+    ----------
+    df_filtered : pd.DataFrame
+        The data to download.
+    key_prefix : str, optional
+        Prefix used to create unique keys for Streamlit widgets.
+    """
     if df_filtered.empty:
         return
     csv = df_filtered.to_csv(index=False).encode("utf-8")
@@ -288,6 +296,7 @@ def download_filtered_data(df_filtered):
         data=csv,
         file_name="filtered_behavior.csv",
         mime="text/csv",
+        key=f"{key_prefix}csv" if key_prefix else None,
     )
     from io import BytesIO
 
@@ -298,6 +307,7 @@ def download_filtered_data(df_filtered):
         data=output.getvalue(),
         file_name="filtered_behavior.xlsx",
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        key=f"{key_prefix}excel" if key_prefix else None,
     )
 
 
@@ -384,7 +394,7 @@ def main():
                 title="Activity Budget Distribution",
                 y_max=df_filtered_sorted["Percentage"].max(),
             )
-            download_filtered_data(df_filtered_sorted)
+            download_filtered_data(df_filtered_sorted, key_prefix="filtered_")
 
             # Calculate deviations
             if filter_option == "By Individual" and selected_animal:
@@ -544,7 +554,7 @@ def main():
                         title=chart_title,
                         y_max=max_y,
                     )
-                    download_filtered_data(df_filtered)
+                    download_filtered_data(df_filtered, key_prefix=f"field_{i}_")
                 else:
                     st.warning("No data available for the selected filters.")
 
@@ -614,7 +624,7 @@ def main():
                 )
                 .set_properties(**{"color": "white"}, subset=["Unified Behavior"])
             )
-            download_filtered_data(comparison_df.reset_index())
+            download_filtered_data(comparison_df.reset_index(), key_prefix="comparison_")
         else:
             st.warning("No data available for comparison.")
 
