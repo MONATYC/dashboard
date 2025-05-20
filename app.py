@@ -4,6 +4,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime
 from pandas.tseries.offsets import MonthEnd
+from data_utils import load_data, check_dataset_freshness
 
 # Configure the Streamlit page
 st.set_page_config(
@@ -12,27 +13,17 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-
-# Load data from the project folder with cache to optimize performance
-@st.cache_data
-def load_data():
-    try:
-        df = pd.read_csv("reports/behavior.csv")
-        df["Date"] = pd.to_datetime(df["Date"])
-        return df
-    except FileNotFoundError:
-        st.error("The file 'behavior.csv' was not found.")
-    except pd.errors.EmptyDataError:
-        st.error("The file is empty. Please provide a valid CSV file.")
-    except pd.errors.ParserError:
-        st.error("Error parsing the CSV file. Please check the file format.")
-    except Exception as e:
-        st.error(f"Error loading data: {e}")
-    return pd.DataFrame()
-
-
 # Function to select the time period
 def select_period(df, key_prefix=""):
+    """Return a start and end ``pd.Timestamp`` based on user input.
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        Loaded dataset with a ``Date`` column.
+    key_prefix : str, optional
+        Prefix for widget keys when multiple selectors are displayed.
+    """
     min_date = df["Date"].min()
     max_date = df["Date"].max()
 
@@ -97,6 +88,20 @@ def select_period(df, key_prefix=""):
 
 # Function to select filters with mutual exclusivity
 def select_filters(df, key_prefix=""):
+    """Return filters for the selected query type.
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        Dataset to provide selection options from.
+    key_prefix : str, optional
+        Prefix for widget keys when used multiple times.
+
+    Returns
+    -------
+    tuple
+        (filter_option, selected_animal, selected_sex, selected_groups)
+    """
     filter_option = st.selectbox(
         "Filter By",
         options=["By Individual", "By Sex and Social Group"],
@@ -133,6 +138,7 @@ def select_filters(df, key_prefix=""):
 
 # Function to create a consistent color map for behaviors
 def get_behavior_color_map(df):
+    """Return a consistent color for each behavior."""
     behaviors = sorted(df["Unified Behavior"].unique())
     colors = px.colors.qualitative.Plotly
     if len(behaviors) > len(colors):
@@ -152,6 +158,7 @@ def create_bar_chart(
     title="Activity Budget Distribution",
     y_max=None,
 ):
+    """Display a bar chart for the provided data."""
     # Ensure the behavior_order contains unique values
     if behavior_order is not None:
         behavior_order = list(
@@ -193,6 +200,7 @@ def create_bar_chart(
 
 # New function to calculate deviations
 def calculate_deviations(df, df_filtered, selected_animal):
+    """Compute deviation percentages for a single individual."""
     common_behaviors = df["Unified Behavior"].unique()
 
     # Media de todos los individuos para cada conducta en la base de datos completa
@@ -243,6 +251,7 @@ def calculate_deviations(df, df_filtered, selected_animal):
 
 # New function to create deviation bar chart
 def create_deviation_bar_chart(deviations, title):
+    """Draw a grouped bar chart of deviation values."""
     fig = go.Figure()
 
     colors = {"All": "#636EFA", "Group": "#EF553B", "Individual": "#00CC96"}
@@ -269,8 +278,32 @@ def create_deviation_bar_chart(deviations, title):
     st.plotly_chart(fig, use_container_width=True)
 
 
+def download_filtered_data(df_filtered):
+    """Offer download buttons for CSV and Excel."""
+    if df_filtered.empty:
+        return
+    csv = df_filtered.to_csv(index=False).encode("utf-8")
+    st.download_button(
+        "Download CSV",
+        data=csv,
+        file_name="filtered_behavior.csv",
+        mime="text/csv",
+    )
+    from io import BytesIO
+
+    output = BytesIO()
+    df_filtered.to_excel(output, index=False)
+    st.download_button(
+        "Download Excel",
+        data=output.getvalue(),
+        file_name="filtered_behavior.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    )
+
+
 # Main function
 def main():
+    """Render the dashboard UI."""
     st.sidebar.title("Dashboard Settings")
     st.sidebar.write("Use the following options to customize the data visualization.")
 
@@ -279,12 +312,19 @@ def main():
     if df.empty:
         st.error("Data could not be loaded.")
         return
+    check_dataset_freshness(df)
 
     # Generate a consistent color map for behaviors
     behavior_color_map = get_behavior_color_map(df)
 
     # Option to select the type of query
     query_type = st.sidebar.selectbox("Select Query Type", ["Snapshot", "Comparison"])
+
+    with st.sidebar.expander("About", expanded=False):
+        st.markdown(
+            "This dashboard visualizes chimpanzee behavioral data collected over time."
+        )
+        st.markdown("Dataset courtesy of the research team.")
 
     if query_type == "Snapshot":
         # Snapshot view
@@ -344,6 +384,7 @@ def main():
                 title="Activity Budget Distribution",
                 y_max=df_filtered_sorted["Percentage"].max(),
             )
+            download_filtered_data(df_filtered_sorted)
 
             # Calculate deviations
             if filter_option == "By Individual" and selected_animal:
@@ -503,6 +544,7 @@ def main():
                         title=chart_title,
                         y_max=max_y,
                     )
+                    download_filtered_data(df_filtered)
                 else:
                     st.warning("No data available for the selected filters.")
 
@@ -572,6 +614,7 @@ def main():
                 )
                 .set_properties(**{"color": "white"}, subset=["Unified Behavior"])
             )
+            download_filtered_data(comparison_df.reset_index())
         else:
             st.warning("No data available for comparison.")
 
