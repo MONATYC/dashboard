@@ -291,23 +291,48 @@ def download_filtered_data(df_filtered, key_prefix=""):
     if df_filtered.empty:
         return
     csv = df_filtered.to_csv(index=False).encode("utf-8")
-    st.download_button(
-        "Download CSV",
-        data=csv,
-        file_name="filtered_behavior.csv",
-        mime="text/csv",
-        key=f"{key_prefix}csv" if key_prefix else None,
-    )
     from io import BytesIO
 
     output = BytesIO()
     df_filtered.to_excel(output, index=False)
-    st.download_button(
-        "Download Excel",
-        data=output.getvalue(),
-        file_name="filtered_behavior.xlsx",
-        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        key=f"{key_prefix}excel" if key_prefix else None,
+
+    csv_key = f"{key_prefix}csv" if key_prefix else "csv"
+    excel_key = f"{key_prefix}excel" if key_prefix else "excel"
+
+    col_csv, col_excel = st.columns(2)
+    with col_csv:
+        st.download_button(
+            "Download CSV",
+            data=csv,
+            file_name="filtered_behavior.csv",
+            mime="text/csv",
+            key=csv_key,
+        )
+    with col_excel:
+        st.download_button(
+            "Download Excel",
+            data=output.getvalue(),
+            file_name="filtered_behavior.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            key=excel_key,
+        )
+
+    st.markdown(
+        f"""
+        <style>
+        button[data-baseweb="button"]#{csv_key} {{
+            background-color: #1f77b4;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.8rem;
+        }}
+        button[data-baseweb="button"]#{excel_key} {{
+            background-color: #2ca02c;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.8rem;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True,
     )
 
 
