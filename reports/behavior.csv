@@ -5030,100 +5030,134 @@ Date,Focal Name,Unified Behavior,Percentage,Sex,Social Group
 2025-04,Waty,Manipulation,0.47,Female,Mutamba
 2025-04,Waty,Self directed,1.86,Female,Mutamba
 2025-04,Waty,Socio Sexual,0.47,Female,Mutamba
-2025-05,Africa,Abnormal,0.66,Female,Mutamba
-2025-05,Africa,Affiliative,2.63,Female,Mutamba
-2025-05,Africa,Alimentation,32.89,Female,Mutamba
-2025-05,Africa,Grooming,11.18,Female,Mutamba
-2025-05,Africa,Human Interaction,0.66,Female,Mutamba
-2025-05,Africa,Inactivity,42.76,Female,Mutamba
-2025-05,Africa,Locomotion,3.29,Female,Mutamba
-2025-05,Africa,Self directed,5.26,Female,Mutamba
-2025-05,Africa,Socio Sexual,0.66,Female,Mutamba
-2025-05,Bongo,Alimentation,19.33,Male,Mutamba
-2025-05,Bongo,Grooming,6.67,Male,Mutamba
-2025-05,Bongo,Human Interaction,6.67,Male,Mutamba
-2025-05,Bongo,Inactivity,62.0,Male,Mutamba
-2025-05,Bongo,Locomotion,2.0,Male,Mutamba
-2025-05,Bongo,Self directed,3.33,Male,Mutamba
-2025-05,Caline,Affiliative,1.72,Female,Sugus
-2025-05,Caline,Alimentation,33.62,Female,Sugus
-2025-05,Caline,Grooming,0.86,Female,Sugus
-2025-05,Caline,Inactivity,54.31,Female,Sugus
-2025-05,Caline,Locomotion,5.17,Female,Sugus
-2025-05,Caline,Manipulation,0.86,Female,Sugus
-2025-05,Caline,Self directed,3.45,Female,Sugus
-2025-05,Cheeta,Alimentation,45.33,Female,Bilinga
-2025-05,Cheeta,Grooming,2.67,Female,Bilinga
-2025-05,Cheeta,Inactivity,47.33,Female,Bilinga
-2025-05,Cheeta,Locomotion,4.0,Female,Bilinga
-2025-05,Cheeta,Manipulation,0.67,Female,Bilinga
-2025-05,Coco,Abnormal,9.6,Female,Bilinga
-2025-05,Coco,Alimentation,37.6,Female,Bilinga
-2025-05,Coco,Grooming,8.0,Female,Bilinga
-2025-05,Coco,Inactivity,32.8,Female,Bilinga
-2025-05,Coco,Locomotion,8.0,Female,Bilinga
-2025-05,Coco,Manipulation,0.8,Female,Bilinga
-2025-05,Coco,Self directed,3.2,Female,Bilinga
-2025-05,Hugo,Abnormal,4.62,Male,Sugus
-2025-05,Hugo,Affiliative,0.77,Male,Sugus
-2025-05,Hugo,Agonistic,0.77,Male,Sugus
-2025-05,Hugo,Alimentation,40.0,Male,Sugus
-2025-05,Hugo,Inactivity,40.77,Male,Sugus
-2025-05,Hugo,Locomotion,8.46,Male,Sugus
-2025-05,Hugo,Manipulation,0.77,Male,Sugus
-2025-05,Hugo,Self directed,3.85,Male,Sugus
-2025-05,Juanito,Affiliative,0.68,Male,Mutamba
-2025-05,Juanito,Alimentation,27.89,Male,Mutamba
-2025-05,Juanito,Grooming,31.97,Male,Mutamba
-2025-05,Juanito,Human Interaction,6.8,Male,Mutamba
-2025-05,Juanito,Inactivity,28.57,Male,Mutamba
-2025-05,Juanito,Locomotion,2.72,Male,Mutamba
-2025-05,Juanito,Self directed,1.36,Male,Mutamba
-2025-05,Marco,Abnormal,0.77,Male,Mutamba
-2025-05,Marco,Affiliative,0.77,Male,Mutamba
-2025-05,Marco,Alimentation,46.15,Male,Mutamba
-2025-05,Marco,Grooming,15.38,Male,Mutamba
-2025-05,Marco,Inactivity,31.54,Male,Mutamba
-2025-05,Marco,Locomotion,2.31,Male,Mutamba
-2025-05,Marco,Self directed,2.31,Male,Mutamba
-2025-05,Marco,Socio Sexual,0.77,Male,Mutamba
-2025-05,Mayumba,Abnormal,0.88,Female,Sugus
-2025-05,Mayumba,Affiliative,1.75,Female,Sugus
-2025-05,Mayumba,Alimentation,38.6,Female,Sugus
-2025-05,Mayumba,Grooming,0.88,Female,Sugus
-2025-05,Mayumba,Inactivity,30.7,Female,Sugus
-2025-05,Mayumba,Locomotion,5.26,Female,Sugus
-2025-05,Mayumba,Manipulation,5.26,Female,Sugus
-2025-05,Mayumba,Self directed,16.67,Female,Sugus
-2025-05,Nico,Alimentation,48.91,Male,Bilinga
-2025-05,Nico,Grooming,2.19,Male,Bilinga
-2025-05,Nico,Human Interaction,1.46,Male,Bilinga
-2025-05,Nico,Inactivity,40.15,Male,Bilinga
-2025-05,Nico,Locomotion,6.57,Male,Bilinga
-2025-05,Nico,Self directed,0.73,Male,Bilinga
-2025-05,Suzie,Affiliative,0.72,Female,Sugus
-2025-05,Suzie,Alimentation,61.87,Female,Sugus
-2025-05,Suzie,Inactivity,25.9,Female,Sugus
-2025-05,Suzie,Locomotion,2.16,Female,Sugus
-2025-05,Suzie,Manipulation,0.72,Female,Sugus
-2025-05,Suzie,Self directed,8.63,Female,Sugus
-2025-05,Tom,Alimentation,26.19,Male,Bilinga
-2025-05,Tom,Grooming,3.97,Male,Bilinga
-2025-05,Tom,Human Interaction,3.17,Male,Bilinga
-2025-05,Tom,Inactivity,61.9,Male,Bilinga
-2025-05,Tom,Locomotion,3.17,Male,Bilinga
-2025-05,Tom,Self directed,1.59,Male,Bilinga
-2025-05,Victor,Abnormal,2.94,Male,Bilinga
-2025-05,Victor,Agonistic,0.74,Male,Bilinga
-2025-05,Victor,Alimentation,33.82,Male,Bilinga
-2025-05,Victor,Grooming,1.47,Male,Bilinga
-2025-05,Victor,Inactivity,58.82,Male,Bilinga
-2025-05,Victor,Locomotion,1.47,Male,Bilinga
-2025-05,Victor,Self directed,0.74,Male,Bilinga
-2025-05,Waty,Abnormal,1.31,Female,Mutamba
-2025-05,Waty,Affiliative,2.61,Female,Mutamba
-2025-05,Waty,Alimentation,24.84,Female,Mutamba
-2025-05,Waty,Grooming,32.68,Female,Mutamba
-2025-05,Waty,Inactivity,32.03,Female,Mutamba
-2025-05,Waty,Locomotion,3.27,Female,Mutamba
-2025-05,Waty,Self directed,3.27,Female,Mutamba
+2025-05,Africa,Abnormal,0.62,Female,Mutamba
+2025-05,Africa,Affiliative,2.92,Female,Mutamba
+2025-05,Africa,Alimentation,28.33,Female,Mutamba
+2025-05,Africa,Grooming,8.33,Female,Mutamba
+2025-05,Africa,Human Interaction,0.21,Female,Mutamba
+2025-05,Africa,Inactivity,50.42,Female,Mutamba
+2025-05,Africa,Locomotion,3.33,Female,Mutamba
+2025-05,Africa,Manipulation,1.25,Female,Mutamba
+2025-05,Africa,Self directed,3.96,Female,Mutamba
+2025-05,Africa,Socio Sexual,0.62,Female,Mutamba
+2025-05,Bongo,Affiliative,0.64,Male,Mutamba
+2025-05,Bongo,Alimentation,27.14,Male,Mutamba
+2025-05,Bongo,Grooming,4.7,Male,Mutamba
+2025-05,Bongo,Human Interaction,2.35,Male,Mutamba
+2025-05,Bongo,Inactivity,59.83,Male,Mutamba
+2025-05,Bongo,Interaction other group,0.43,Male,Mutamba
+2025-05,Bongo,Locomotion,2.99,Male,Mutamba
+2025-05,Bongo,Self directed,1.92,Male,Mutamba
+2025-05,Caline,Abnormal,0.98,Female,Sugus
+2025-05,Caline,Affiliative,1.96,Female,Sugus
+2025-05,Caline,Alimentation,27.5,Female,Sugus
+2025-05,Caline,Grooming,0.79,Female,Sugus
+2025-05,Caline,Human Interaction,2.55,Female,Sugus
+2025-05,Caline,Inactivity,56.97,Female,Sugus
+2025-05,Caline,Interaction other group,0.39,Female,Sugus
+2025-05,Caline,Locomotion,6.68,Female,Sugus
+2025-05,Caline,Manipulation,0.2,Female,Sugus
+2025-05,Caline,Self directed,1.96,Female,Sugus
+2025-05,Cheeta,Abnormal,0.75,Female,Bilinga
+2025-05,Cheeta,Alimentation,45.11,Female,Bilinga
+2025-05,Cheeta,Grooming,2.44,Female,Bilinga
+2025-05,Cheeta,Human Interaction,0.56,Female,Bilinga
+2025-05,Cheeta,Inactivity,43.42,Female,Bilinga
+2025-05,Cheeta,Locomotion,3.57,Female,Bilinga
+2025-05,Cheeta,Manipulation,0.56,Female,Bilinga
+2025-05,Cheeta,Self directed,3.2,Female,Bilinga
+2025-05,Cheeta,Socio Sexual,0.38,Female,Bilinga
+2025-05,Coco,Abnormal,12.25,Female,Bilinga
+2025-05,Coco,Affiliative,0.22,Female,Bilinga
+2025-05,Coco,Alimentation,33.48,Female,Bilinga
+2025-05,Coco,Grooming,7.88,Female,Bilinga
+2025-05,Coco,Human Interaction,2.19,Female,Bilinga
+2025-05,Coco,Inactivity,32.6,Female,Bilinga
+2025-05,Coco,Locomotion,5.25,Female,Bilinga
+2025-05,Coco,Manipulation,0.88,Female,Bilinga
+2025-05,Coco,Self directed,4.38,Female,Bilinga
+2025-05,Coco,Socio Sexual,0.88,Female,Bilinga
+2025-05,Hugo,Abnormal,2.13,Male,Sugus
+2025-05,Hugo,Affiliative,1.93,Male,Sugus
+2025-05,Hugo,Agonistic,0.97,Male,Sugus
+2025-05,Hugo,Alimentation,36.17,Male,Sugus
+2025-05,Hugo,Grooming,11.99,Male,Sugus
+2025-05,Hugo,Human Interaction,0.19,Male,Sugus
+2025-05,Hugo,Inactivity,36.75,Male,Sugus
+2025-05,Hugo,Interaction other group,0.39,Male,Sugus
+2025-05,Hugo,Locomotion,6.0,Male,Sugus
+2025-05,Hugo,Manipulation,0.19,Male,Sugus
+2025-05,Hugo,Self directed,3.09,Male,Sugus
+2025-05,Hugo,Socio Sexual,0.19,Male,Sugus
+2025-05,Juanito,Abnormal,0.22,Male,Mutamba
+2025-05,Juanito,Affiliative,1.33,Male,Mutamba
+2025-05,Juanito,Alimentation,36.89,Male,Mutamba
+2025-05,Juanito,Grooming,21.33,Male,Mutamba
+2025-05,Juanito,Human Interaction,2.22,Male,Mutamba
+2025-05,Juanito,Inactivity,31.56,Male,Mutamba
+2025-05,Juanito,Locomotion,3.11,Male,Mutamba
+2025-05,Juanito,Self directed,2.44,Male,Mutamba
+2025-05,Juanito,Socio Sexual,0.89,Male,Mutamba
+2025-05,Marco,Abnormal,0.49,Male,Mutamba
+2025-05,Marco,Affiliative,0.98,Male,Mutamba
+2025-05,Marco,Alimentation,47.07,Male,Mutamba
+2025-05,Marco,Grooming,8.54,Male,Mutamba
+2025-05,Marco,Human Interaction,0.73,Male,Mutamba
+2025-05,Marco,Inactivity,35.61,Male,Mutamba
+2025-05,Marco,Locomotion,1.95,Male,Mutamba
+2025-05,Marco,Manipulation,0.49,Male,Mutamba
+2025-05,Marco,Self directed,2.93,Male,Mutamba
+2025-05,Marco,Socio Sexual,1.22,Male,Mutamba
+2025-05,Mayumba,Abnormal,2.77,Female,Sugus
+2025-05,Mayumba,Affiliative,2.34,Female,Sugus
+2025-05,Mayumba,Alimentation,35.11,Female,Sugus
+2025-05,Mayumba,Grooming,13.62,Female,Sugus
+2025-05,Mayumba,Human Interaction,0.43,Female,Sugus
+2025-05,Mayumba,Inactivity,29.79,Female,Sugus
+2025-05,Mayumba,Locomotion,4.89,Female,Sugus
+2025-05,Mayumba,Manipulation,1.91,Female,Sugus
+2025-05,Mayumba,Self directed,9.15,Female,Sugus
+2025-05,Nico,Affiliative,0.23,Male,Bilinga
+2025-05,Nico,Alimentation,46.79,Male,Bilinga
+2025-05,Nico,Grooming,2.98,Male,Bilinga
+2025-05,Nico,Human Interaction,1.83,Male,Bilinga
+2025-05,Nico,Inactivity,40.6,Male,Bilinga
+2025-05,Nico,Locomotion,5.5,Male,Bilinga
+2025-05,Nico,Self directed,2.06,Male,Bilinga
+2025-05,Suzie,Abnormal,0.75,Female,Sugus
+2025-05,Suzie,Affiliative,1.69,Female,Sugus
+2025-05,Suzie,Agonistic,0.19,Female,Sugus
+2025-05,Suzie,Alimentation,50.19,Female,Sugus
+2025-05,Suzie,Human Interaction,0.19,Female,Sugus
+2025-05,Suzie,Inactivity,40.82,Female,Sugus
+2025-05,Suzie,Locomotion,1.31,Female,Sugus
+2025-05,Suzie,Manipulation,0.19,Female,Sugus
+2025-05,Suzie,Self directed,4.49,Female,Sugus
+2025-05,Suzie,Socio Sexual,0.19,Female,Sugus
+2025-05,Tom,Abnormal,2.56,Male,Bilinga
+2025-05,Tom,Alimentation,18.65,Male,Bilinga
+2025-05,Tom,Grooming,2.93,Male,Bilinga
+2025-05,Tom,Human Interaction,1.65,Male,Bilinga
+2025-05,Tom,Inactivity,64.53,Male,Bilinga
+2025-05,Tom,Locomotion,2.74,Male,Bilinga
+2025-05,Tom,Manipulation,0.55,Male,Bilinga
+2025-05,Tom,Self directed,6.03,Male,Bilinga
+2025-05,Tom,Socio Sexual,0.37,Male,Bilinga
+2025-05,Victor,Abnormal,7.42,Male,Bilinga
+2025-05,Victor,Agonistic,0.51,Male,Bilinga
+2025-05,Victor,Alimentation,37.27,Male,Bilinga
+2025-05,Victor,Grooming,1.69,Male,Bilinga
+2025-05,Victor,Inactivity,47.55,Male,Bilinga
+2025-05,Victor,Locomotion,3.71,Male,Bilinga
+2025-05,Victor,Manipulation,0.34,Male,Bilinga
+2025-05,Victor,Self directed,1.52,Male,Bilinga
+2025-05,Waty,Abnormal,2.08,Female,Mutamba
+2025-05,Waty,Affiliative,2.34,Female,Mutamba
+2025-05,Waty,Agonistic,0.26,Female,Mutamba
+2025-05,Waty,Alimentation,22.08,Female,Mutamba
+2025-05,Waty,Grooming,23.9,Female,Mutamba
+2025-05,Waty,Human Interaction,0.26,Female,Mutamba
+2025-05,Waty,Inactivity,41.04,Female,Mutamba
+2025-05,Waty,Locomotion,4.68,Female,Mutamba
+2025-05,Waty,Manipulation,0.78,Female,Mutamba
+2025-05,Waty,Self directed,2.6,Female,Mutamba
