@@ -278,6 +278,33 @@ def create_deviation_bar_chart(deviations, title):
     st.plotly_chart(fig, use_container_width=True)
 
 
+def get_behavior_history(df, animal, behavior):
+    """Return behavior percentages for a specific animal over time."""
+    subset = df[(df["Focal Name"] == animal) & (df["Unified Behavior"] == behavior)]
+    return subset.sort_values("Date")[["Date", "Percentage"]]
+
+
+def create_history_line_chart(df_line, title):
+    """Display a time series line chart for behavior history."""
+    if df_line.empty:
+        st.warning("No data available for the selected options.")
+        return
+
+    df_line = df_line.sort_values("Date")
+    df_line["Month"] = df_line["Date"].dt.to_period("M").astype(str)
+
+    fig = px.line(
+        df_line,
+        x="Month",
+        y="Percentage",
+        markers=True,
+        title=title,
+        template="plotly_dark",
+    )
+    fig.update_layout(xaxis_title="Month", yaxis_title="Percentage")
+    st.plotly_chart(fig, use_container_width=True)
+
+
 def download_filtered_data(df_filtered, key_prefix=""):
     """Offer download buttons for CSV and Excel.
 
@@ -353,7 +380,10 @@ def main():
     behavior_color_map = get_behavior_color_map(df)
 
     # Option to select the type of query
-    query_type = st.sidebar.selectbox("Select Query Type", ["Snapshot", "Comparison"])
+    query_type = st.sidebar.selectbox(
+        "Select Query Type",
+        ["Snapshot", "Comparison", "Behavior History"],
+    )
 
     with st.sidebar.expander("About", expanded=False):
         st.markdown(
@@ -652,6 +682,18 @@ def main():
             download_filtered_data(comparison_df.reset_index(), key_prefix="comparison_")
         else:
             st.warning("No data available for comparison.")
+
+    elif query_type == "Behavior History":
+        st.title("Behavior History")
+        animals = df["Focal Name"].unique()
+        behaviors = df["Unified Behavior"].unique()
+        selected_animal = st.selectbox("Select an Animal", animals)
+        selected_behavior = st.selectbox("Select Behavior", behaviors)
+
+        df_line = get_behavior_history(df, selected_animal, selected_behavior)
+
+        title = f"{selected_behavior} over time for {selected_animal}"
+        create_history_line_chart(df_line, title)
 
     else:
         st.warning("Please select a query type.")

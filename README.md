@@ -21,3 +21,7 @@ Place an updated `behavior.csv` inside the `reports/` directory. You can also up
 ## Exporting results
 
 The dashboard allows downloading filtered data as CSV or Excel files via the sidebar.
+
+## Behavior history
+
+Select **Behavior History** from the sidebar to view how an individual's behavior percentages change over time. Choose an animal and a behavior to display a line chart with monthly values.
