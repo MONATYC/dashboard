@@ -284,6 +284,18 @@ def get_behavior_history(df, animal, behavior):
     return subset.sort_values("Date")[["Date", "Percentage"]]
 
 
+def get_behavior_history_by_filters(df, sexes=None, groups=None, behavior=None):
+    """Return mean behavior percentages over time filtered by sex/group."""
+    subset = df[df["Unified Behavior"] == behavior]
+    if sexes is not None:
+        subset = subset[subset["Sex"].isin(sexes)]
+    if groups is not None:
+        subset = subset[subset["Social Group"].isin(groups)]
+
+    grouped = subset.groupby("Date", as_index=False)["Percentage"].mean()
+    return grouped.sort_values("Date")[["Date", "Percentage"]]
+
+
 def create_history_line_chart(df_line, title):
     """Display a time series line chart for behavior history."""
     if df_line.empty:
@@ -685,14 +697,25 @@ def main():
 
     elif query_type == "Behavior History":
         st.title("Behavior History")
-        animals = df["Focal Name"].unique()
+
+        filter_option, sel_animal, sel_sex, sel_groups = select_filters(df, key_prefix="history_")
         behaviors = df["Unified Behavior"].unique()
-        selected_animal = st.selectbox("Select an Animal", animals)
-        selected_behavior = st.selectbox("Select Behavior", behaviors)
+        selected_behavior = st.selectbox("Select Behavior", behaviors, key="history_behavior")
 
-        df_line = get_behavior_history(df, selected_animal, selected_behavior)
+        if filter_option == "By Individual" and sel_animal:
+            df_line = get_behavior_history(df, sel_animal, selected_behavior)
+            title = f"{selected_behavior} over time for {sel_animal}"
+        else:
+            df_line = get_behavior_history_by_filters(
+                df,
+                sexes=sel_sex,
+                groups=sel_groups,
+                behavior=selected_behavior,
+            )
+            sex_text = ", ".join(sel_sex) if sel_sex else "All Sexes"
+            group_text = ", ".join(sel_groups) if sel_groups else "All Social Groups"
+            title = f"{selected_behavior} over time | Sex: {sex_text} | Group: {group_text}"
 
-        title = f"{selected_behavior} over time for {selected_animal}"
         create_history_line_chart(df_line, title)
 
     else:
