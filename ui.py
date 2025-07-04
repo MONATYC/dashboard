@@ -78,13 +78,20 @@ def select_period(df, key_prefix=""):
     return start_date, end_date
 
 
-def select_filters(df, key_prefix="", default_filter_option="By Individual"):
+def select_filters(
+    df,
+    key_prefix="",
+    default_filter_option="By Individual",
+    style="selectbox",
+):
     """Return filters for the selected query type."""
-    filter_option = st.selectbox(
+    selector = st.selectbox if style == "selectbox" else st.radio
+    filter_option = selector(
         "Filter By",
         options=["By Individual", "By Sex and Social Group"],
         index=0 if default_filter_option == "By Individual" else 1,
         key=f"{key_prefix}filter_option",
+        horizontal=True if style == "radio" else False,
     )
 
     if filter_option == "By Individual":
@@ -247,3 +254,28 @@ def download_filtered_data(df_filtered, key_prefix=""):
         """,
         unsafe_allow_html=True,
     )
+
+
+def metric_card(label, value, delta=None):
+    """Display a KPI metric card."""
+    st.metric(label, value, delta)
+
+
+def color_legend(color_map):
+    """Render a simple color legend based on a behavior->color map."""
+    if not color_map:
+        return
+    legend_items = [
+        f"<span style='display:inline-block;width:12px;height:12px;background:{c};margin-right:4px'></span>{b}"
+        for b, c in color_map.items()
+    ]
+    st.markdown("  ".join(legend_items), unsafe_allow_html=True)
+
+
+def sticky_filters(container):
+    """Apply CSS to make filters sticky at the top of the sidebar."""
+    container.markdown(
+        "<style>.sticky{position:sticky;top:0;z-index:100;background-color:#0e1117;padding-bottom:10px;}</style>",
+        unsafe_allow_html=True,
+    )
+    return container
