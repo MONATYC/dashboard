@@ -85,14 +85,21 @@ def select_filters(
     style="selectbox",
 ):
     """Return filters for the selected query type."""
-    selector = st.selectbox if style == "selectbox" else st.radio
-    filter_option = selector(
-        "Filter By",
-        options=["By Individual", "By Sex and Social Group"],
-        index=0 if default_filter_option == "By Individual" else 1,
-        key=f"{key_prefix}filter_option",
-        horizontal=True if style == "radio" else False,
-    )
+    if style == "radio":
+        filter_option = st.radio(
+            "Filter By",
+            options=["By Individual", "By Sex and Social Group"],
+            index=0 if default_filter_option == "By Individual" else 1,
+            key=f"{key_prefix}filter_option",
+            horizontal=True,
+        )
+    else:
+        filter_option = st.selectbox(
+            "Filter By",
+            options=["By Individual", "By Sex and Social Group"],
+            index=0 if default_filter_option == "By Individual" else 1,
+            key=f"{key_prefix}filter_option",
+        )
 
     if filter_option == "By Individual":
         animals = df["Focal Name"].unique()
