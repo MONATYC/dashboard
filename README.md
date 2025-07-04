@@ -13,6 +13,7 @@ This project provides a Streamlit dashboard to explore chimpanzee behavior data 
    ```bash
    streamlit run app.py
    ```
+4. The app uses a dark theme defined in `.streamlit/config.toml`.
 
 ## Updating data
 

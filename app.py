@@ -678,7 +678,7 @@ def main():
                         for col in comparison_df.columns
                     },
                 )
-                .set_properties(**{"text-align": "left", "color": "white"})
+                .set_properties(**{"text-align": "left"})
                 .map(
                     lambda x: "color: lightblue"
                     if x > 0
@@ -689,7 +689,6 @@ def main():
                         col for col in comparison_df.columns if col.startswith("Diff")
                     ],
                 )
-                .set_properties(**{"color": "white"}, subset=["Unified Behavior"])
             )
             download_filtered_data(comparison_df.reset_index(), key_prefix="comparison_")
         else:
