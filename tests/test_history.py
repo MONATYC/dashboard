@@ -1,5 +1,5 @@
 import pandas as pd
-from app import get_behavior_history, get_behavior_history_by_filters
+from logic import get_behavior_history, get_behavior_history_by_filters
 
 
 def test_get_behavior_history():
