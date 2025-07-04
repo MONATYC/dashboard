@@ -101,11 +101,12 @@ def run(df):
             df_grouped = (
                 df_filtered.groupby("Unified Behavior", observed=False)["Percentage"].mean().reset_index()
             )
+            col_name = f"{chart_titles[i]} ({i+1})"
             if comparison_df.empty:
-                comparison_df = df_grouped.set_index("Unified Behavior").rename(columns={"Percentage": chart_titles[i]})
+                comparison_df = df_grouped.set_index("Unified Behavior").rename(columns={"Percentage": col_name})
             else:
                 comparison_df = comparison_df.join(
-                    df_grouped.set_index("Unified Behavior")["Percentage"].rename(chart_titles[i]),
+                    df_grouped.set_index("Unified Behavior")["Percentage"].rename(col_name),
                     how="outer",
                 )
 
