@@ -7,7 +7,7 @@ from logic import (
 from ui import select_filters, create_history_line_chart
 
 st.set_page_config(
-    page_title="\ud83d\udcc8 Behavior History",
+    page_title="📈 Behavior History",
     layout="wide",
     initial_sidebar_state="expanded",
 )

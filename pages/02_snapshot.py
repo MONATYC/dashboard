@@ -12,7 +12,7 @@ from ui import (
 )
 
 st.set_page_config(
-    page_title="\ud83d\udcca Snapshot",
+    page_title="📊 Snapshot",
     layout="wide",
     initial_sidebar_state="expanded",
 )
