@@ -7,10 +7,12 @@ from ui import (
     create_bar_chart,
     create_deviation_bar_chart,
     download_filtered_data,
+    metric_card,
+    color_legend,
 )
 
 st.set_page_config(
-    page_title="Snapshot",
+    page_title="\ud83d\udcca Snapshot",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -18,8 +20,11 @@ st.set_page_config(
 
 def run(df):
     """Render the snapshot page."""
-    start_date, end_date = select_period(df)
-    filter_option, selected_animal, selected_sex, selected_groups = select_filters(df)
+    with st.sidebar.expander("Filters", expanded=True):
+        start_date, end_date = select_period(df, key_prefix="snap_")
+        filter_option, selected_animal, selected_sex, selected_groups = select_filters(
+            df, key_prefix="snap_"
+        )
 
     df_filtered = filter_data(
         df,
@@ -42,22 +47,40 @@ def run(df):
 
     if not df_filtered.empty:
         st.title(chart_title)
+        st.subheader(f"{start_date.strftime('%b %Y')} - {end_date.strftime('%b %Y')}")
+        kpi1 = len(df_filtered)
+        kpi2 = df_filtered["Focal Name"].nunique()
+        kpi3 = df_filtered["Unified Behavior"].nunique()
+        col_k1, col_k2, col_k3 = st.columns(3)
+        with col_k1:
+            metric_card("Observations", kpi1)
+        with col_k2:
+            metric_card("Focals", kpi2)
+        with col_k3:
+            metric_card("Behaviors", kpi3)
+
         color_map = get_behavior_color_map(df)
         df_sorted = df_filtered.sort_values(by="Percentage", ascending=False)
-        create_bar_chart(
-            df_sorted,
-            behavior_order=df_sorted["Unified Behavior"].tolist(),
-            color_map=color_map,
-            title="Activity Budget Distribution",
-            y_max=df_sorted["Percentage"].max(),
-        )
-        download_filtered_data(df_sorted, key_prefix="filtered_")
+        col_chart, col_dev = st.columns(2)
+        with col_chart:
+            create_bar_chart(
+                df_sorted,
+                behavior_order=df_sorted["Unified Behavior"].tolist(),
+                color_map=color_map,
+                title="Activity Budget Distribution",
+                y_max=df_sorted["Percentage"].max(),
+            )
+            color_legend(color_map)
 
-        if filter_option == "By Individual" and selected_animal:
-            deviations = calculate_deviations(df, df_filtered, selected_animal)
-            create_deviation_bar_chart(deviations, "Behavior Deviations")
-            st.subheader("Deviation Summary")
-            st.dataframe(deviations[["Percentage", "Individual", "Group", "All"]])
+        with col_dev:
+            if filter_option == "By Individual" and selected_animal:
+                deviations = calculate_deviations(df, df_filtered, selected_animal)
+                create_deviation_bar_chart(deviations, "Behavior Deviations")
+                st.subheader("Deviation Summary")
+                st.dataframe(deviations[["Percentage", "Individual", "Group", "All"]])
+            else:
+                st.empty()
+        download_filtered_data(df_sorted, key_prefix="filtered_")
     else:
         st.warning("No data available for the selected filters.")
 

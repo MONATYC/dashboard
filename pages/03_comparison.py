@@ -10,7 +10,7 @@ from ui import (
 )
 
 st.set_page_config(
-    page_title="Comparison",
+    page_title="\ud83c\udf11 Comparison",
     layout="wide",
     initial_sidebar_state="expanded",
 )
