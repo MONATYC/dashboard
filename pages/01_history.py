@@ -1,9 +1,16 @@
 import streamlit as st
+from data_utils import load_data, check_dataset_freshness
 from logic import (
     get_behavior_history,
     get_behavior_history_by_filters,
 )
 from ui import select_filters, create_history_line_chart
+
+st.set_page_config(
+    page_title="History",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
 
 
 def run(df):
@@ -27,3 +34,16 @@ def run(df):
         title = f"{selected_behavior} over time | Sex: {sex_text} | Group: {group_text}"
 
     create_history_line_chart(df_line, title)
+
+
+def main():
+    df = load_data()
+    if df.empty:
+        st.error("Data could not be loaded.")
+        return
+    check_dataset_freshness(df)
+    run(df)
+
+
+if __name__ == "__main__":
+    main()
