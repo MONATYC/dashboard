@@ -22,22 +22,30 @@ def select_period(df, key_prefix=""):
         col4, col5 = st.columns(2)
         with col4:
             start_year = st.selectbox(
-                "Start Year", options=years, key=f"{key_prefix}start_year"
+                "Start Year",
+                options=years,
+                index=0,
+                key=f"{key_prefix}start_year",
             )
             start_month = st.selectbox(
                 "Start Month",
                 options=months,
                 format_func=lambda x: datetime(2000, x, 1).strftime("%B"),
+                index=min_date.month - 1,
                 key=f"{key_prefix}start_month",
             )
         with col5:
             end_year = st.selectbox(
-                "End Year", options=years, key=f"{key_prefix}end_year"
+                "End Year",
+                options=years,
+                index=len(years) - 1,
+                key=f"{key_prefix}end_year",
             )
             end_month = st.selectbox(
                 "End Month",
                 options=months,
                 format_func=lambda x: datetime(2000, x, 1).strftime("%B"),
+                index=max_date.month - 1,
                 key=f"{key_prefix}end_month",
             )
 
@@ -50,14 +58,17 @@ def select_period(df, key_prefix=""):
         col1, col2 = st.columns(2)
         with col1:
             selected_year = st.selectbox(
-                "Year", options=years, index=0, key=f"{key_prefix}year"
+                "Year",
+                options=years,
+                index=len(years) - 1,
+                key=f"{key_prefix}year",
             )
         with col2:
             selected_month = st.selectbox(
                 "Month",
                 options=months,
                 format_func=lambda x: datetime(2000, x, 1).strftime("%B"),
-                index=0,
+                index=max_date.month - 1,
                 key=f"{key_prefix}month",
             )
 
@@ -67,11 +78,12 @@ def select_period(df, key_prefix=""):
     return start_date, end_date
 
 
-def select_filters(df, key_prefix=""):
+def select_filters(df, key_prefix="", default_filter_option="By Individual"):
     """Return filters for the selected query type."""
     filter_option = st.selectbox(
         "Filter By",
         options=["By Individual", "By Sex and Social Group"],
+        index=0 if default_filter_option == "By Individual" else 1,
         key=f"{key_prefix}filter_option",
     )
 
