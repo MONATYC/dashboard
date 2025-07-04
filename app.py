@@ -1,46 +1,24 @@
 import streamlit as st
-from data_utils import load_data, check_dataset_freshness
-import pages.snapshot as snapshot
-import pages.comparison as comparison
-import pages.history as history
 
 st.set_page_config(
-    page_title="Chimpanzee Behavior Dashboard",
+    page_title="Home",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
-
 def main():
-    st.sidebar.title("Dashboard Settings")
-    st.sidebar.write("Use the following options to customize the data visualization.")
+    st.title("Bienvenido al Dashboard de Comportamiento de Chimpancés")
+    st.write(
+        """
+        Esta aplicación te permite explorar de forma interactiva la base de datos
+        comportamentales recopilada por nuestro equipo. Desde aquí podrás:
+        • Consultar la historia de cada conducta en la sección *history*.
+        • Analizar un periodo concreto usando *snapshot*.
+        • Comparar distintos filtros y fechas en *comparison*.
 
-    df = load_data()
-    if df.empty:
-        st.error("Data could not be loaded.")
-        return
-    check_dataset_freshness(df)
-
-    query_type = st.sidebar.selectbox(
-        "Select Query Type",
-        ["Snapshot", "Comparison", "Behavior History"],
+        Utiliza el menú lateral para navegar por las funcionalidades.
+        """
     )
-
-    with st.sidebar.expander("About", expanded=False):
-        st.markdown(
-            "This dashboard visualizes chimpanzee behavioral data collected over time."
-        )
-        st.markdown("Dataset courtesy of the research team.")
-
-    if query_type == "Snapshot":
-        snapshot.run(df)
-    elif query_type == "Comparison":
-        comparison.run(df)
-    elif query_type == "Behavior History":
-        history.run(df)
-    else:
-        st.warning("Please select a query type.")
-
 
 if __name__ == "__main__":
     main()

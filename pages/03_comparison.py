@@ -1,11 +1,18 @@
 import pandas as pd
 import streamlit as st
+from data_utils import load_data, check_dataset_freshness
 from logic import filter_data, get_behavior_color_map
 from ui import (
     select_period,
     select_filters,
     create_bar_chart,
     download_filtered_data,
+)
+
+st.set_page_config(
+    page_title="Comparison",
+    layout="wide",
+    initial_sidebar_state="expanded",
 )
 
 
@@ -112,3 +119,16 @@ def run(df):
         download_filtered_data(comparison_df.reset_index(), key_prefix="comparison_")
     else:
         st.warning("No data available for comparison.")
+
+
+def main():
+    df = load_data()
+    if df.empty:
+        st.error("Data could not be loaded.")
+        return
+    check_dataset_freshness(df)
+    run(df)
+
+
+if __name__ == "__main__":
+    main()
