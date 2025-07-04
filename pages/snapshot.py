@@ -1,5 +1,5 @@
+import pandas as pd
 import streamlit as st
-from data_utils import load_data, check_dataset_freshness
 from logic import filter_data, calculate_deviations, get_behavior_color_map
 from ui import (
     select_period,
@@ -9,11 +9,6 @@ from ui import (
     download_filtered_data,
 )
 
-st.set_page_config(
-    page_title="Snapshot",
-    layout="wide",
-    initial_sidebar_state="expanded",
-)
 
 def run(df):
     """Render the snapshot page."""
@@ -59,11 +54,3 @@ def run(df):
             st.dataframe(deviations[["Percentage", "Individual", "Group", "All"]])
     else:
         st.warning("No data available for the selected filters.")
-
-
-df = load_data()
-if not df.empty:
-    check_dataset_freshness(df)
-    run(df)
-else:
-    st.error("Data could not be loaded.")

@@ -1,16 +1,10 @@
 import streamlit as st
-from data_utils import load_data, check_dataset_freshness
 from logic import (
     get_behavior_history,
     get_behavior_history_by_filters,
 )
 from ui import select_filters, create_history_line_chart
 
-st.set_page_config(
-    page_title="Historial de Conducta",
-    layout="wide",
-    initial_sidebar_state="expanded",
-)
 
 def run(df):
     """Render the behavior history page."""
@@ -33,11 +27,3 @@ def run(df):
         title = f"{selected_behavior} over time | Sex: {sex_text} | Group: {group_text}"
 
     create_history_line_chart(df_line, title)
-
-
-df = load_data()
-if not df.empty:
-    check_dataset_freshness(df)
-    run(df)
-else:
-    st.error("Data could not be loaded.")
