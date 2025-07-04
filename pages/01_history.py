@@ -15,7 +15,11 @@ st.set_page_config(
 
 def run(df):
     """Render the behavior history page."""
-    filter_option, sel_animal, sel_sex, sel_groups = select_filters(df, key_prefix="history_")
+    filter_option, sel_animal, sel_sex, sel_groups = select_filters(
+        df,
+        key_prefix="history_",
+        default_filter_option="By Sex and Social Group",
+    )
     behaviors = df["Unified Behavior"].unique()
     selected_behavior = st.selectbox("Select Behavior", behaviors, key="history_behavior")
 
