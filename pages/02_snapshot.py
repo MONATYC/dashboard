@@ -8,7 +8,6 @@ from ui import (
     create_deviation_bar_chart,
     download_filtered_data,
     metric_card,
-    color_legend,
 )
 
 st.set_page_config(
@@ -51,7 +50,6 @@ def run(df):
     if not df_filtered.empty:
         st.title(chart_title)
         color_map = get_behavior_color_map(df)
-        color_legend(color_map)
         st.subheader(f"{start_date.strftime('%b %Y')} - {end_date.strftime('%b %Y')}")
         kpi1 = df_filtered["Date"].dt.to_period("M").nunique()
         kpi2 = df_filtered["Focal Name"].nunique()
