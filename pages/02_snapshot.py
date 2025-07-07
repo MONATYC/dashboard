@@ -50,6 +50,8 @@ def run(df):
 
     if not df_filtered.empty:
         st.title(chart_title)
+        color_map = get_behavior_color_map(df)
+        color_legend(color_map)
         st.subheader(f"{start_date.strftime('%b %Y')} - {end_date.strftime('%b %Y')}")
         kpi1 = df_filtered["Date"].dt.to_period("M").nunique()
         kpi2 = df_filtered["Focal Name"].nunique()
@@ -62,7 +64,6 @@ def run(df):
         with col_k3:
             metric_card("Behaviors", kpi3)
 
-        color_map = get_behavior_color_map(df)
         df_sorted = df_filtered.sort_values(by="Percentage", ascending=False)
         col_chart, col_dev = st.columns(2)
         with col_chart:
@@ -73,14 +74,13 @@ def run(df):
                 title="Activity Budget Distribution",
                 y_max=df_sorted["Percentage"].max(),
             )
-            color_legend(color_map)
 
         with col_dev:
             if filter_option == "By Individual" and selected_animal:
                 deviations = calculate_deviations(df, df_filtered, selected_animal)
                 create_deviation_bar_chart(deviations, "Behavior Deviations")
-                st.subheader("Deviation Summary")
-                st.dataframe(deviations[["Percentage", "Individual", "Group", "All"]])
+                with st.expander("Ver resumen de datos"):
+                    st.dataframe(deviations[["Percentage", "Individual", "Group", "All"]])
             else:
                 st.empty()
         download_filtered_data(df_sorted, key_prefix="filtered_")
