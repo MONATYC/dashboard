@@ -23,7 +23,10 @@ def run(df):
     with st.sidebar.expander("Filters", expanded=True):
         start_date, end_date = select_period(df, key_prefix="snap_")
         filter_option, selected_animal, selected_sex, selected_groups = select_filters(
-            df, key_prefix="snap_"
+            df,
+            key_prefix="snap_",
+            default_filter_option="By Sex and Social Group",
+            style="radio",
         )
 
     df_filtered = filter_data(
@@ -48,12 +51,12 @@ def run(df):
     if not df_filtered.empty:
         st.title(chart_title)
         st.subheader(f"{start_date.strftime('%b %Y')} - {end_date.strftime('%b %Y')}")
-        kpi1 = len(df_filtered)
+        kpi1 = df_filtered["Date"].dt.to_period("M").nunique()
         kpi2 = df_filtered["Focal Name"].nunique()
         kpi3 = df_filtered["Unified Behavior"].nunique()
         col_k1, col_k2, col_k3 = st.columns(3)
         with col_k1:
-            metric_card("Observations", kpi1)
+            metric_card("Months", kpi1)
         with col_k2:
             metric_card("Focals", kpi2)
         with col_k3:
