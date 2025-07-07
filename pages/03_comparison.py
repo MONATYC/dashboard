@@ -30,7 +30,12 @@ def run(df):
         with columns[i]:
             key_prefix = f"field_{i}_"
             start_date, end_date = select_period(df, key_prefix=key_prefix)
-            filter_option, selected_animal, selected_sex, selected_groups = select_filters(df, key_prefix=key_prefix)
+            filter_option, selected_animal, selected_sex, selected_groups = select_filters(
+                df,
+                key_prefix=key_prefix,
+                default_filter_option="By Sex and Social Group",
+                style="radio",
+            )
 
             df_filtered = filter_data(
                 df,
