@@ -13,6 +13,7 @@ This project provides a Streamlit dashboard to explore chimpanzee behavior data 
    ```bash
    streamlit run app.py
    ```
+4. The app uses a dark theme defined in `.streamlit/config.toml`.
 
 ## Updating data
 
@@ -24,4 +25,4 @@ The dashboard allows downloading filtered data as CSV or Excel files via the sid
 
 ## Behavior history
 
-Select **Behavior History** from the sidebar to view how an individual's behavior percentages change over time. Choose an animal and a behavior to display a line chart with monthly values.
+Use the sidebar to choose between **Snapshot**, **Comparison** and **Behavior History** pages. Snapshot shows a summary for a given period, Comparison lets you place several panels side by side and Behavior History displays how an individual's behavior changes over time.
